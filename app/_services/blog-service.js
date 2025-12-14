@@ -1,8 +1,6 @@
 import { addDoc, collection, doc, getDoc, getDocs, query } from "firebase/firestore";
 import { db } from "../_utils/firebase";
 
-
-
 export async function dbAddBlogPost(blogPostObj) {
     try {
         console.log(blogPostObj);
