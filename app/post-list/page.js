@@ -18,7 +18,7 @@ export default function PropsPage(){
 
 return (
     <main>
-        <h1>List of Posts</h1>
+        <h1 className="text-center">List of Posts</h1>
         <PostCompObject postObj={postOne}/>
         <PostCompObject postObj={postTwo}/>
     </main>
