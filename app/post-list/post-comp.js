@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function PostCompObject( {postObj} ){
 
     let {id, dateTime, text} = postObj;
@@ -7,6 +9,8 @@ export default function PostCompObject( {postObj} ){
             <ul className="list-disc pl-4 mt-4 text-center">
                 <li className="text-md font-bold font-serif">{dateTime}</li>
                 <li className="text-sm">{text}</li>
+                <li className="text-md font-bold font-serif">{dateTime}</li>
+                <Link href="/reply">Reply</Link>
             </ul>
         </div>
     );
