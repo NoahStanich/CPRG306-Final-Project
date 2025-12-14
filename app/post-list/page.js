@@ -1,6 +1,13 @@
+"use client"
+
 import PostCompObject from "./post-comp"
+import { useUserAuth } from "../_utils/auth-context";
 
 export default function PropsPage(){
+
+    const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
+
+
 
     let postOne = {
     id: 1,
@@ -18,9 +25,18 @@ export default function PropsPage(){
 
 return (
     <main>
-        <h1 className="text-center">List of Posts</h1>
-        <PostCompObject postObj={postOne}/>
-        <PostCompObject postObj={postTwo}/>
+    { user ? (
+        <div>
+            <h1>List of Posts</h1>
+            <PostCompObject postObj={postOne}/>
+            <PostCompObject postObj={postTwo}/>
+        </div>
+    ) : (
+        <div>
+            <p>You must be signed in to use this page!</p>
+        </div>
+    )}
     </main>
+
 );
 }
