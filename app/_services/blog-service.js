@@ -3,8 +3,9 @@ import { db } from "../_utils/firebase";
 
 
 
-export async function dbAddBlogPost(userId, blogPostObj) {
+export async function dbAddBlogPost(blogPostObj) {
     try {
+        console.log(blogPostObj);
         const newBlogPostReference = collection(db, "blog-posts");
         const newBlogPostPromise = await addDoc(newBlogPostReference, blogPostObj);
         console.log(newBlogPostPromise.id);
@@ -13,7 +14,7 @@ export async function dbAddBlogPost(userId, blogPostObj) {
     }
 }
 
-export async function dbAddBlogReply(userId, postId, blogPostObj) {
+export async function dbAddBlogReply(postId, blogPostObj) {
     try {
         const newBlogPostReference = collection(db, "blog-posts", postId, "reply");
         const newBlogPostPromise = await addDoc(newBlogPostReference, blogPostObj);
@@ -60,8 +61,6 @@ export async function dbGetAllBlogPosts(setTheThing) {
             }
             blogPostList.push(thisPost);
         });
-        console.log(blogPostList);
-        //return blogPostList;
         setTheThing(blogPostList);
     } catch (error) {
         console.log(error);

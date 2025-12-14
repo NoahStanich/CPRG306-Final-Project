@@ -18,9 +18,8 @@ export default function PropsPage(){
     }
 
     useEffect(() => {
-        if (user) dbGetAllBlogPosts(user.uid, handleBlogChange);
-    }, [user]);
-    console.log(blogPostList);
+        if (user) dbGetAllBlogPosts(setBlogPostList);
+    }, [user, blogPostList]);
 
     
 
@@ -30,7 +29,6 @@ export default function PropsPage(){
     uid: null,
     dateTime: "December 14 10:00 AM",
     text: "This is a post.",
-    photoUrl: ""
     }
 
     let postTwo = {
@@ -38,7 +36,6 @@ export default function PropsPage(){
     uid: null,
     dateTime: "December 14 11:00 AM",
     text: "This is also a post.",
-    photoUrl: ""
     }
     */
 
@@ -49,7 +46,7 @@ return (
             <h1>List of Posts</h1>
             {blogPostList.map((post) => (
                 <li key={post.id}>
-                    <Link href={`/${post.id}`}>{post.title}</Link>
+                    <PostCompObject postObj={post}/>
                 </li>
             ))}
         </div>

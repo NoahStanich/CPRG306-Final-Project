@@ -1,9 +1,11 @@
 "use client";
-
 import { useState } from "react";
+import { useUserAuth } from "../_utils/auth-context"
+import { dbAddBlogPost } from "../_services/blog-service";
 
 export default function WritePostComp(){
 
+    const {user} = useUserAuth();
     const [text, setText] = useState("");
 
     const handleTextChange = (event) => {
@@ -11,19 +13,38 @@ export default function WritePostComp(){
         setText(event.target.value);
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+        function handleSubmit(event) {
+        if (user != null) {
+            event.preventDefault();
+            const now = new Date();
+            let newBlogPost = {
+                uid: user.uid, 
+                text: text,
+                dateTime: now.toLocaleDateString() + ' ' + now.toLocaleTimeString()
+            }
+            
+            dbAddBlogPost(newBlogPost);
+            setText("");
+        }
+
     }
 
     let inputStyles = "bg-white border-1 border-blue-600 rounded px-2 py-1 focus:bg-amber-200"
 
     return(
-        <form className="bg-blue-300 rounded-2xl p-4" onSubmit={handleSubmit}>
-            <h2 className="text-center text-2xl mb-4">Write a post!</h2>
-            <div className="mb-4">
-                <label className="inline-block w-40">Text</label>
-                <input name="text" value={text} type="text" className={inputStyles} onChange={handleTextChange} />
-            </div>
-        </form>
+        <main>
+            <header>
+                <h1>Add a new blog post!</h1>
+            </header>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Contents:</label>
+                    <textarea onChange={handleTextChange} value={text}></textarea>
+                </div>
+                <div>
+                    <button type="submit">Add Blog Post</button>
+                </div>
+            </form>
+        </main>
     );
 }
