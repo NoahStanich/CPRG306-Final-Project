@@ -1,6 +1,13 @@
+"use client"
+import { useUserAuth } from "../_utils/auth-context";
+
 export default function Profile(){
+  const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
+
     return(
         <main>
+          {user ? (
+            <div>
             <header className="mt-4 mb-4">
                 <h1 className="text-3xl text-center font-bold">Profile</h1>
             </header>
@@ -16,7 +23,12 @@ export default function Profile(){
                   <li className="py-5">Email: </li>
                 </ul>
               </div>
-            </section>5
+            </section>
+            </div>
+          ) : (
+            <p>You need an account to view this page!</p>
+          )}
+            
         </main>
     )
 }
