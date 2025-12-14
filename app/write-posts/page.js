@@ -29,19 +29,17 @@ export default function WritePostComp(){
 
     }
 
-    let inputStyles = "bg-white border-1 border-blue-600 rounded px-2 py-1 focus:bg-amber-200"
-
     return(
         <main>
             <header>
-                <h1>Add a new blog post!</h1>
+                <h1 className="text-3xl p-5 text-center">Add a new blog post!</h1>
             </header>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="flex justify-center">
                     <label>Contents:</label>
                     <textarea onChange={handleTextChange} value={text}></textarea>
                 </div>
-                <div>
+                <div className="flex justify-center">
                     <button type="submit">Add Blog Post</button>
                 </div>
             </form>
