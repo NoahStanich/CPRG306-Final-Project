@@ -41,7 +41,6 @@ export default function BlogPostPage({params}) {
         setText("");
         }
     }
-    
 
     return (
         <main>

@@ -1,6 +1,7 @@
-"use client"
-import { useUserAuth } from "../_utils/auth-context";
-import Image from "next/image";
+"use client";
+
+import Link from "next/link";
+import { useUserAuth } from "../_utils/auth-context";;
 import PostCompObject from "../post-list/post-comp";
 import { useState, useEffect } from "react";
 import { dbGetAllBlogPostsByUserID } from "../_services/blog-service";
@@ -35,12 +36,17 @@ export default function Profile(){
             </div>
           </section>
           <section>
-              <h1>Your Posts!</h1>
+              <h1 className="text-2xl text-center">Your Posts!</h1>
               {blogPostList.map((post) => (
                   <li key={post.id}>
                       <PostCompObject postObj={post}/>
                   </li>
               ))}
+          </section>
+          <section>
+            <div className="flex justify-center">
+              <Link href="/" className="p-2 rounded bg-red-400 mt-5 cursor-pointer">Go back</Link>
+            </div>
           </section>
           </div>
         ) : (
