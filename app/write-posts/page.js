@@ -13,20 +13,19 @@ export default function WritePostComp(){
         setText(event.target.value);
     }
 
-        function handleSubmit(event) {
-        if (user != null) {
-            event.preventDefault();
-            const now = new Date();
-            let newBlogPost = {
-                uid: user.uid, 
-                text: text,
-                dateTime: now.toLocaleDateString() + ' ' + now.toLocaleTimeString()
-            }
-            
-            dbAddBlogPost(newBlogPost);
-            setText("");
+    function handleSubmit(event) {
+    if (user != null) {
+        event.preventDefault();
+        const now = new Date();
+        let newBlogPost = {
+            uid: user.uid, 
+            text: text,
+            dateTime: now.toLocaleDateString() + ' ' + now.toLocaleTimeString()
         }
-
+        
+        dbAddBlogPost(newBlogPost);
+        setText("");
+        }
     }
 
     return(
