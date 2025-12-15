@@ -3,6 +3,8 @@
 import Link from "next/link";
 
 import { useUserAuth } from "./_utils/auth-context";
+import { addUser } from "./_services/blog-service";
+import { useEffect } from "react";
 
 
 export default function MainPage(){
@@ -26,6 +28,14 @@ export default function MainPage(){
       console.log(error);
     }
   }
+  useEffect(() => {
+    if (user) 
+      addUser(user.uid, {
+        displayName: user.displayName,
+        email: user.email,
+      });
+  }, [user]);
+  
 
   return(
     <div className="min-h-screen">

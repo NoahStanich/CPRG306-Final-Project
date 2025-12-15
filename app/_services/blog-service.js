@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDoc, getDocs, query } from "firebase/firestore";
+import { addDoc, setDoc, collection, doc, getDoc, getDocs, query } from "firebase/firestore";
 import { db } from "../_utils/firebase";
 
 export async function dbAddBlogPost(blogPostObj) {
@@ -22,6 +22,28 @@ export async function dbAddBlogReply(postId, blogPostObj) {
     }
 }
 
+export async function addUser(userId, infoObj) {
+    try {
+        await setDoc(doc(db, "users", userId), infoObj);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export async function dbGetUserById(userId, userStateSetter) {
+    try {
+        const blogPostRef = doc(db, "users", userId);
+        const documentSnapshot = await getDoc(blogPostRef);
+        if (documentSnapshot.exists()) {
+            userStateSetter(documentSnapshot.data());
+        } else {
+            console.log("This user does not exist in the database.");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export async function dbGetAllBlogPostsByUserID(userId, setTheThing) {
     try {
         const allBlogPostsReference = collection(db, "blog-posts");
@@ -37,8 +59,6 @@ export async function dbGetAllBlogPostsByUserID(userId, setTheThing) {
             if (thisPost.uid == userId)
                 blogPostList.push(thisPost);
         });
-        console.log(blogPostList);
-        //return blogPostList;
         setTheThing(blogPostList);
     } catch (error) {
         console.log(error);
