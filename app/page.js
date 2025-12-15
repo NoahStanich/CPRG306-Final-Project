@@ -68,13 +68,8 @@ export default function MainPage(){
             </div>
         ) : (
           <div>
-            <section>
-              <div>
-                <p>Welcome!</p>
-              </div>
-            </section>
-            <section>
-              <button type="button" onClick={handleSignIn}>Sign In with Github</button>
+            <section className="text-center text-2xl">
+              <button type="button" onClick={handleSignIn} className="bg-red-700 p-2 rounded cursor-pointer">Sign in with Github</button>
             </section>
           </div>
         )}
