@@ -49,6 +49,9 @@ return (
                     <PostCompObject postObj={post}/>
                 </li>
             ))}
+            <div className="flex justify-center">
+                <Link href="/" className="p-2 rounded bg-red-400 mt-5 cursor-pointer">Go back</Link>
+            </div>
         </div>
     ) : (
         <div>
