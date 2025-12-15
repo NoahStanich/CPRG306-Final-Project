@@ -79,8 +79,6 @@ export async function dbGetAllReply(postId, setTheThing) {
             }
             blogPostList.push(thisPost);
         });
-        console.log(blogPostList);
-        //return blogPostList;
         setTheThing(blogPostList);
     } catch (error) {
         console.log(error);
