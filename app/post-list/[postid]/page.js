@@ -1,4 +1,6 @@
-"use client"
+"use client";
+
+import Link from "next/link";
 import { use, useEffect, useState } from "react";
 import { useUserAuth } from "../../_utils/auth-context";
 import { dbAddBlogReply, dbGetBlogPostById, dbGetAllReply } from "../../_services/blog-service";
@@ -43,22 +45,25 @@ export default function BlogPostPage({params}) {
 
     return (
         <main>
+            <h1 className="text-2xl text-center p-5">List of Replies</h1>
             <ReplyCompObject postObj={blogPost}/>
-            <form onSubmit={handleSubmit}>
-                <div className="flex justify-center">
-                    <label>Contents:</label>
-                    <textarea onChange={handleTextChange} value={text}></textarea>
-                </div>
-                <div className="flex justify-center">
-                    <button type="submit">Add Blog Post</button>
-                </div>
-            </form>
-            <h1>List of Replies</h1>
             {blogPostList.map((post) => (
                 <li key={post.id}>
                     <ReplyCompObject postObj={post}/>
                 </li>
             ))}
+            <form className="place-items-center" onSubmit={handleSubmit}>
+                <div className="flex flex-col text-center">
+                    <label>Contents:</label>
+                    <textarea className="border border-solid rounded p-1 mt-5" onChange={handleTextChange} value={text}></textarea>
+                </div>
+                <div className="flex justify-center">
+                    <button className="p-2 rounded bg-red-400 mt-5 cursor-pointer" type="submit">Add Blog Post</button>
+                </div>
+                <div className="flex justify-center">
+                    <Link href="/post-list" className="p-2 rounded bg-red-400 mt-5 cursor-pointer">Go back</Link>
+                </div>
+            </form>
         </main>
     )
 }

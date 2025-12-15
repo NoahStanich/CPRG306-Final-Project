@@ -43,7 +43,7 @@ return (
     <main>
     { user ? (
         <div>
-            <h1>List of Posts</h1>
+            <h1 className="text-3xl text-center p-5">List of Posts</h1>
             {blogPostList.map((post) => (
                 <li key={post.id}>
                     <PostCompObject postObj={post}/>
