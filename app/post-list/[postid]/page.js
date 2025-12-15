@@ -9,7 +9,6 @@ export default function BlogPostPage({params}) {
     const {user} = useUserAuth();
     const [blogPost, setBlogPost] = useState({});
     
-    console.log(pageParams);
     useEffect( () => {
         if (user) dbGetBlogPostById(pageParams.postid, setBlogPost);
     }, [user]);
